@@ -13,6 +13,18 @@ textarea {
   padding: 10px;
 }
 
+#clock {
+  height: 4rem;
+  background-color: green;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: greenyellow;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 2rem;
+}
+
 .jumbotron {
   text-align: center;
   background-color: transparent;
