@@ -1,8 +1,11 @@
 $(document).ready(function () {
   const clock = document.getElementById("clock");
+
   clock.innerHTML = moment().format("dddd, Do MMMM  YYYY, h:mm:ss a");
+
   const saveBtn = document.getElementById("saveBtn");
   // when you click btn text from input should be saved
+
   const textBox = document.getElementById("text-box").textContent;
   console.log(textBox);
 
