@@ -5,17 +5,25 @@ $(document).ready(function () {
 
   function currentTime() {
     const current = moment().hours();
-    const time = $(".timeblock");
+    const tableRows = $("tbody tr");
 
-    time.each(function () {
-      const hour = parseInt($(this).attr("id"));
+    tableRows.each(function () {
+      const hour = parseInt($(this).children(".timeblock").attr("id"));
+
+      // get value from LS for hour
+      const task = localStorage.getItem(hour);
+
+      if (task) {
+        const input = $($($(this).children("td")[0]).children("input")[0]);
+        input.val(task);
+      }
 
       if (hour === current) {
-        $(this).children(".textbox").attr("class", "present textbox");
+        $(this).attr("class", "present textbox");
       } else if (current > hour) {
-        $(this).children(".textbox").attr("class", "past textbox");
+        $(this).attr("class", "past textbox");
       } else {
-        $(this).children(".textbox").attr("class", "future textbox");
+        $(this).attr("class", "future textbox");
       }
     });
   }
@@ -25,26 +33,9 @@ $(document).ready(function () {
   const button = $(".saveBtn");
 
   button.on("click", function () {
-    const time = $(this).parent().attr("id");
+    const time = $(this).siblings(".textbox").attr("id");
     const textBox = $(this).siblings(".textbox").val();
 
     localStorage.setItem(time, textBox);
   });
 });
-
-// const saveBtn = document.getElementById("saveBtn");
-// // when you click btn text from input should be saved
-
-// const textBox = document.getElementById("textbox").textContent;
-// console.log(textBox);
-
-// const time = document.getElementById("timeblock").textContent;
-// console.log(time);
-// // button click isnt being picked up currently
-
-// saveBtn.addEventListener("click", function () {
-//   // currently only listening out for 1pm button click
-
-//   localStorage.setItem(time, textBox);
-//   console.log("hello");
-// });
